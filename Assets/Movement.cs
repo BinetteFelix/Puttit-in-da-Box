@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public GameObject Camera;
     int Speed = 10;
     public Vector3 Deltamove;
     bool SprintToggle = false;
