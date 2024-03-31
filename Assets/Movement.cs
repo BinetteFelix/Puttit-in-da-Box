@@ -2,20 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
+using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 public class Movement : MonoBehaviour
 {
-    int Speed = 10;
-    public Vector3 Deltamove;
+    [SerializeField]
+    GameObject Inventory;
+
+    [SerializeField]
+    GameObject BulletPosition;
+
+    public Image PressEPrefab;
+    private Image UIUse;
+
+    Rigidbody PlayerRigidbody;
+    public Rigidbody BulletPrefab;
+
+
+    Vector3 Deltamove;
     bool SprintToggle = false;
     bool JumpCooldownActive = false;
-    Rigidbody PlayerRigidbody;
+    public bool InventoryUI = false;
+
+
+    int Speed = 25;
+    float ShotSpeed = 250;
     float SecondCount = 0;
     // Start is called before the first frame update
     void Start()
     {
         PlayerRigidbody = GetComponent<Rigidbody>();
-        
     }
 
     // Update is called once per frame
@@ -23,90 +40,118 @@ public class Movement : MonoBehaviour
     {
         //Calls the method Gravity
         Gravity();
-        Deltamove = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")) * Speed * Time.deltaTime;
-        transform.Translate(Deltamove);
 
-        if (SprintToggle == false)
+        UIUse.transform.position = Camera.main.WorldToScreenPoint(transform.position);
+
+
+        if (InventoryUI == false)
         {
-            //Movement
-            if (Input.GetKey(KeyCode.W))
+            //Move Direction
+            Deltamove = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")) * Speed * Time.deltaTime;
+            transform.Translate(Deltamove);
+            //No Sprint Movement
+            if (SprintToggle == false)
             {
-                MoveForward();
+                if (Input.GetKey(KeyCode.W))
+                {
+                    MoveForward();
+                }
+                if (Input.GetKey(KeyCode.A))
+                {
+                    MoveForward();
+                }
+                if (Input.GetKey(KeyCode.S))
+                {
+                    MoveForward();
+                }
+                if (Input.GetKey(KeyCode.D))
+                {
+                    MoveForward();
+                }
             }
-            if (Input.GetKey(KeyCode.A))
+            //Sprint Movement
+            if (SprintToggle == true)
             {
-                MoveForward();
+                if (Input.GetKey(KeyCode.W))
+                {
+                    SprintForward();
+                }
+                if (Input.GetKey(KeyCode.A))
+                {
+                    SprintForward();
+                }
+                if (Input.GetKey(KeyCode.S))
+                {
+                    SprintForward();
+                }
+                if (Input.GetKey(KeyCode.D))
+                {
+                    SprintForward();
+                }
             }
-            if (Input.GetKey(KeyCode.S))
+
+            if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                MoveForward();
+                ShootBullet();
             }
-            if (Input.GetKey(KeyCode.D))
+
+            if (Input.GetKeyDown(KeyCode.LeftShift) && SprintToggle == false)
             {
-                MoveForward();
+                SprintToggle = true;
             }
-        }
-        if(SprintToggle == true)
-        {
-            if (Input.GetKey(KeyCode.W))
+            else if(Input.GetKeyUp(KeyCode.LeftShift) && SprintToggle == true)
             {
-                SprintForward();
+                SprintToggle = false;
             }
-            if (Input.GetKey(KeyCode.A))
-            {
-                SprintForward();
-            }
-            if (Input.GetKey(KeyCode.S))
-            {
-                SprintForward();
-            }
-            if (Input.GetKey(KeyCode.D))
-            {
-                SprintForward();
-            }
-        }
-        if (Input.GetKey(KeyCode.LeftShift) && SprintToggle == false)
-        {
-            SprintToggle = true;
-        }
-        else if(Input.GetKey(KeyCode.LeftShift) && SprintToggle == true)
-        {
-            SprintToggle = false;
-        }
         
-        if(JumpCooldownActive == false)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if(JumpCooldownActive == false)
             {
-                Jump();
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    Jump();
+                }
+            }
+            if(JumpCooldownActive == true)
+            {
+                SecondCount += Time.deltaTime;
+            }
+            if(SecondCount >= 0.75f)
+            {
+                SecondCount = 0;
+                JumpCooldownActive = false;
+            }
+            CloseInventory();
+
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                OpenInventory();
             }
         }
-        if(JumpCooldownActive == true)
+        else if (InventoryUI == true)
         {
-            SecondCount += Time.deltaTime;
-        }
-        if(SecondCount >= 0.99f)
-        {
-            SecondCount = 0;
-            JumpCooldownActive = false;
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                InventoryUI = false;
+            }
         }
     }
     //Normal Move Script
     void MoveForward()
     {
-        Speed = 10;
+        Speed = 25;
         PlayerRigidbody.AddForce(Deltamove, ForceMode.Impulse);
     }
+
     //Sprint Move Script
     void SprintForward()
     {
-        Speed = 25;
+        Speed = 40;
         PlayerRigidbody.AddForce(Deltamove, ForceMode.Impulse);
     }
     //Jumping Script
     void Jump()
     {
-        PlayerRigidbody.AddForce(new Vector3(0, 85, 0), ForceMode.Impulse);
+        PlayerRigidbody.AddForce(new Vector3(0, 100, 0), ForceMode.Impulse);
         JumpCooldownActive = true;
     }
     //Gravity (Kinda obvious but anyway)
@@ -114,4 +159,26 @@ public class Movement : MonoBehaviour
     {
         PlayerRigidbody.AddForce(new Vector3(0, -150, 0));
     }
+    //Spawn and Shoot bullet
+    void ShootBullet()
+    {
+        var Projectile = Instantiate(BulletPrefab, BulletPosition.transform.position, BulletPosition.transform.localRotation);
+
+        Projectile.velocity = BulletPosition.transform.forward * ShotSpeed;
+    }
+    public void OpenInventory()
+    {
+        Inventory.SetActive(true);
+        InventoryUI = true;
+    }
+    public void CloseInventory()
+    {
+        Inventory.SetActive(false);
+        InventoryUI = false;
+    }
+    public void PressEtoPickUp()
+    {
+        UIUse = Instantiate(PressEPrefab, FindObjectOfType<Canvas>().transform).GetComponent<Image>();
+    }
+
 }
