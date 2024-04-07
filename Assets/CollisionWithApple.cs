@@ -27,4 +27,17 @@ public class CollisionWithApple : MonoBehaviour
             Apple.PressEtoPickUp();
         }
     }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        GameObject NotApple = collision.gameObject;
+
+        PickUpApple Apple = NotApple.GetComponent<PickUpApple>();
+
+
+        if (Apple != null)
+        {
+            Apple.DestroyApple();
+        }
+    }
 }

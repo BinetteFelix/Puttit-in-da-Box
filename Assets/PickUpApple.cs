@@ -26,4 +26,8 @@ public class PickUpApple : MonoBehaviour
     {
         UIUse = Instantiate(PressEPrefab, FindObjectOfType<Canvas>().transform).GetComponent<Image>();
     }
+    public void DestroyApple()
+    {
+        Destroy(UIUse);
+    }
 }
