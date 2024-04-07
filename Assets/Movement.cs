@@ -13,9 +13,6 @@ public class Movement : MonoBehaviour
     [SerializeField]
     GameObject BulletPosition;
 
-    public Image PressEPrefab;
-    private Image UIUse;
-
     Rigidbody PlayerRigidbody;
     public Rigidbody BulletPrefab;
 
@@ -41,7 +38,7 @@ public class Movement : MonoBehaviour
         //Calls the method Gravity
         Gravity();
 
-        UIUse.transform.position = Camera.main.WorldToScreenPoint(transform.position);
+       
 
 
         if (InventoryUI == false)
@@ -176,9 +173,4 @@ public class Movement : MonoBehaviour
         Inventory.SetActive(false);
         InventoryUI = false;
     }
-    public void PressEtoPickUp()
-    {
-        UIUse = Instantiate(PressEPrefab, FindObjectOfType<Canvas>().transform).GetComponent<Image>();
-    }
-
 }

@@ -23,7 +23,6 @@ public class HealthPointsEnemy1 : MonoBehaviour
         {
             Destroy(gameObject);
             Instantiate(Apple, gameObject.transform.position, Quaternion.identity);
-            
         }
     }
 }
