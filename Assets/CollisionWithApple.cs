@@ -6,7 +6,7 @@ public class CollisionWithApple : MonoBehaviour
 {
     bool IsActive = false;
 
-    GameObject NotApple;
+    GameObject Player;
     PickUpApple Apple;
     // Start is called before the first frame update
     void Start()
@@ -19,29 +19,33 @@ public class CollisionWithApple : MonoBehaviour
     {
         if(IsActive == true)
         {
-            if (Input.GetKey(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 Apple.DestroyApple();
-                Apple.DestroyUI();
+                IsActive = false;
             }
         }
     }
     private void OnCollisionEnter(Collision collision)
     {
-        NotApple = collision.gameObject;
-        Apple = NotApple.GetComponent<PickUpApple>();
+        Player = collision.gameObject;
+        Apple = Player.GetComponent<PickUpApple>();
 
         if (Apple != null)
         {
-            Apple.PressEtoPickUp();
+            IsActive = true;
+            if (IsActive == true)
+            {
+                Apple.PressEtoPickUp();
+            }
         }
-        IsActive = true;
+        
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        NotApple = collision.gameObject;
-        Apple = NotApple.GetComponent<PickUpApple>();
+        Player = collision.gameObject;
+        Apple = Player.GetComponent<PickUpApple>();
 
 
         if (Apple != null)
