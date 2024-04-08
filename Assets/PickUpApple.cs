@@ -6,6 +6,7 @@ using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 public class PickUpApple : MonoBehaviour
 {
+    bool IsActive = false;
 
     public Image PressEPrefab;
     private Image UIUse;
@@ -19,15 +20,24 @@ public class PickUpApple : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UIUse.transform.position = Camera.main.WorldToScreenPoint(transform.position);
+        if(IsActive == true)
+        {
+            UIUse.transform.position = Camera.main.WorldToScreenPoint(transform.position);
+        }
     }
 
     public void PressEtoPickUp()
     {
+        IsActive = true;
         UIUse = Instantiate(PressEPrefab, FindObjectOfType<Canvas>().transform).GetComponent<Image>();
+    }
+    public void DestroyUI()
+    {
+        IsActive = false;
+        Destroy(UIUse);
     }
     public void DestroyApple()
     {
-        Destroy(UIUse);
+        Destroy(gameObject);
     }
 }
