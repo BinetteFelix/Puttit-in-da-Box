@@ -11,10 +11,12 @@ public class PickUpApple : MonoBehaviour
     public Image PressEPrefab;
     private Image UIUse;
 
+    Rigidbody AppleRigidbody;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        AppleRigidbody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -24,6 +26,7 @@ public class PickUpApple : MonoBehaviour
         {
             UIUse.transform.position = Camera.main.WorldToScreenPoint(transform.position);
         }
+        AppleRigidbody.AddForce(new Vector3(0, -25, 0));
     }
 
     public void PressEtoPickUp()

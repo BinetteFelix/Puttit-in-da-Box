@@ -46,8 +46,6 @@ public class CameraMovement : MonoBehaviour
 
             Player.transform.localRotation = Quaternion.Euler(0, CameraLookaround.x, 0);
             transform.localRotation = Quaternion.Euler(-CameraLookaround.y, CameraLookaround.x, 0);
-
-            
         }
 
         if(Input.GetKeyDown(KeyCode.Tab) && InventoryUI == false)
@@ -58,9 +56,6 @@ public class CameraMovement : MonoBehaviour
         {
             CloseInventory();
         }
-        
-        
-        
     }
     public void OpenInventory()
     {

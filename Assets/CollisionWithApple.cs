@@ -22,31 +22,27 @@ public class CollisionWithApple : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 Apple.DestroyApple();
+                Apple.DestroyUI();
                 IsActive = false;
             }
         }
     }
-    private void OnCollisionEnter(Collision collision)
+
+    private void OnTriggerEnter(Collider other)
     {
-        Player = collision.gameObject;
+        Player = other.gameObject;
         Apple = Player.GetComponent<PickUpApple>();
 
         if (Apple != null)
         {
-            IsActive = true;
-            if (IsActive == true)
-            {
-                Apple.PressEtoPickUp();
-            }
+            Apple.PressEtoPickUp();
         }
-        
+        IsActive = true;
     }
-
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider other)
     {
-        Player = collision.gameObject;
+        Player = other.gameObject;
         Apple = Player.GetComponent<PickUpApple>();
-
 
         if (Apple != null)
         {

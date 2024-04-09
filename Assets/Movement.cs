@@ -38,14 +38,12 @@ public class Movement : MonoBehaviour
         //Calls the method Gravity
         Gravity();
 
-       
-
-
         if (InventoryUI == false)
         {
             //Move Direction
             Deltamove = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")) * Speed * Time.deltaTime;
             transform.Translate(Deltamove);
+
             //No Sprint Movement
             if (SprintToggle == false)
             {
@@ -156,7 +154,7 @@ public class Movement : MonoBehaviour
     {
         PlayerRigidbody.AddForce(new Vector3(0, -150, 0));
     }
-    //Spawn and Shoot bullet
+    //Spawn- and Shoot bullet
     void ShootBullet()
     {
         var Projectile = Instantiate(BulletPrefab, BulletPosition.transform.position, BulletPosition.transform.localRotation);
