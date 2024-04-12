@@ -11,18 +11,21 @@ public class PickUpApple : MonoBehaviour
     public Image PressEPrefab;
     private Image UIUse;
 
+    Vector3 SpawnOffset = new Vector3(50, 0, 0);
+    Rigidbody AppleRigidbody;
     // Start is called before the first frame update
     void Start()
     {
-        
+        AppleRigidbody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
+
         if(IsActive == true)
         {
-            UIUse.transform.position = Camera.main.WorldToScreenPoint(transform.position);
+            UIUse.transform.position = Camera.main.WorldToScreenPoint(transform.position) + SpawnOffset;
         }
         
     }
