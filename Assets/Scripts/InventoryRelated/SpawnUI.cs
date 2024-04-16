@@ -12,7 +12,6 @@ public class SpawnUI : MonoBehaviour
 
     //Actual image
     public Image PressEPrefab;
-
     //Used for spawning to work
     private Image UIUse;
 
@@ -43,5 +42,10 @@ public class SpawnUI : MonoBehaviour
     {
         IsActive = false;
         Destroy(UIUse);
+    }
+
+    public void DestroyItem()
+    {
+        Destroy(gameObject);
     }
 }

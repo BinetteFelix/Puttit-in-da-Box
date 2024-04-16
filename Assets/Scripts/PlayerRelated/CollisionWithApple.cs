@@ -4,18 +4,13 @@ using UnityEngine;
 
 public class CollisionWithApple : MonoBehaviour
 {
+
     bool IsActive = false;
 
     GameObject Player;
 
-    SpawnUI Apple;
-
-    PickUpItem Storage;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    SpawnUI PickupUI;
+    PickUpItem ItemPickUp;
 
     // Update is called once per frame
     void Update()
@@ -24,32 +19,31 @@ public class CollisionWithApple : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                Apple.DestroyUI();
+                PickupUI.DestroyUI();
+                ItemPickUp.PickUp();
                 IsActive = false;
-                Storage.PickUp();
             }
         }
     }
-
     private void OnTriggerEnter(Collider other)
     {
         Player = other.gameObject;
-        Apple = Player.GetComponent<SpawnUI>();
+        PickupUI = Player.GetComponent<SpawnUI>();
 
-        if (Apple != null)
+        if (PickupUI != null)
         {
-            Apple.PressEtoPickUp();
+            PickupUI.PressEtoPickUp();
         }
         IsActive = true;
     }
     private void OnTriggerExit(Collider other)
     {
         Player = other.gameObject;
-        Apple = Player.GetComponent<SpawnUI>();
+        PickupUI = Player.GetComponent<SpawnUI>();
 
-        if (Apple != null)
+        if (PickupUI != null)
         {
-            Apple.DestroyUI();
+            PickupUI.DestroyUI();
         }
         IsActive = false;
     }

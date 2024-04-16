@@ -6,9 +6,11 @@ public class PickUpItem : MonoBehaviour
 {
     public Item Item;
 
+    //remove Item from map
+    SpawnUI RemoveItem;
     public void PickUp()
     {
         InventoryManager.Instance.Add(Item);
-        Destroy(gameObject);
+        RemoveItem.DestroyItem();
     }
 }
