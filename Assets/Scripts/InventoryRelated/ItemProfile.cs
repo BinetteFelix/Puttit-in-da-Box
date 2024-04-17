@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Item", menuName = "Item/Create New Item")]
-public class Item : ScriptableObject
+public class ItemProfile : ScriptableObject
 {
     public int ID;
     public int value;

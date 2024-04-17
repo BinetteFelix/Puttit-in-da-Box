@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class CollisionWithApple : MonoBehaviour
 {
+    [SerializeField]
+    GameObject ItemObject;
+
+    public ItemProfile Item;
 
     bool IsActive = false;
 
     GameObject Player;
 
     SpawnUI PickupUI;
-    PickUpItem ItemPickUp;
 
     // Update is called once per frame
     void Update()
@@ -20,7 +24,7 @@ public class CollisionWithApple : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 PickupUI.DestroyUI();
-                ItemPickUp.PickUp();
+                PickUp();
                 IsActive = false;
             }
         }
@@ -47,4 +51,11 @@ public class CollisionWithApple : MonoBehaviour
         }
         IsActive = false;
     }
+
+    void PickUp()
+    {
+        InventoryManager.Instance.Add(Item);
+        PickupUI.DestroyItem();
+    }
+
 }

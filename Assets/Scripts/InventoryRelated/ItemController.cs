@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class InventoryController : MonoBehaviour
 {
-    public Item Item;
+    public ItemProfile Item;
 }

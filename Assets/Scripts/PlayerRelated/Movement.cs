@@ -37,53 +37,56 @@ public class Movement : MonoBehaviour
     {
         //Calls the method Gravity
         Gravity();
+        //Move Direction
+        Deltamove = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")) * Speed * Time.deltaTime;
+        transform.Translate(Deltamove);
+        
+            
+
+        //No Sprint Movement
+        if (SprintToggle == false)
+        {
+            if (Input.GetKey(KeyCode.W))
+            {
+                MoveForward();
+            }
+            if (Input.GetKey(KeyCode.A))
+            {
+                MoveForward();
+            }
+            if (Input.GetKey(KeyCode.S))
+            {
+                MoveForward();
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                MoveForward();
+            }
+        }
+        //Sprint Movement
+        if (SprintToggle == true)
+        {
+            if (Input.GetKey(KeyCode.W))
+            {
+                SprintForward();
+            }
+            if (Input.GetKey(KeyCode.A))
+            {
+                SprintForward();
+            }
+            if (Input.GetKey(KeyCode.S))
+            {
+                SprintForward();
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                SprintForward();
+            }
+        } 
 
         if (InventoryUI == false)
         {
-            //Move Direction
-            Deltamove = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")) * Speed * Time.deltaTime;
-            transform.Translate(Deltamove);
-
-            //No Sprint Movement
-            if (SprintToggle == false)
-            {
-                if (Input.GetKey(KeyCode.W))
-                {
-                    MoveForward();
-                }
-                if (Input.GetKey(KeyCode.A))
-                {
-                    MoveForward();
-                }
-                if (Input.GetKey(KeyCode.S))
-                {
-                    MoveForward();
-                }
-                if (Input.GetKey(KeyCode.D))
-                {
-                    MoveForward();
-                }
-            }
-            //Sprint Movement
-            if (SprintToggle == true)
-            {
-                if (Input.GetKey(KeyCode.W))
-                {
-                    SprintForward();
-                }
-                if (Input.GetKey(KeyCode.A))
-                {
-                    SprintForward();
-                }
-                if (Input.GetKey(KeyCode.S))
-                {
-                    SprintForward();
-                }
-                if (Input.GetKey(KeyCode.D))
-                {
-                    SprintForward();
-                }
-            }
+            
 
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
@@ -120,6 +123,7 @@ public class Movement : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Tab))
             {
                 OpenInventory();
+                InventoryManager.Instance.ArrangeItems();
             }
         }
         else if (InventoryUI == true)
@@ -128,21 +132,23 @@ public class Movement : MonoBehaviour
             {
                 InventoryUI = false;
             }
+            
         }
     }
+
     //Normal Move Script
     void MoveForward()
     {
         Speed = 25;
         PlayerRigidbody.AddForce(Deltamove, ForceMode.Impulse);
     }
-
     //Sprint Move Script
     void SprintForward()
     {
         Speed = 40;
         PlayerRigidbody.AddForce(Deltamove, ForceMode.Impulse);
     }
+
     //Jumping Script
     void Jump()
     {
@@ -153,7 +159,9 @@ public class Movement : MonoBehaviour
     void Gravity()
     {
         PlayerRigidbody.AddForce(new Vector3(0, -150, 0));
+
     }
+
     //Spawn- and Shoot bullet
     void ShootBullet()
     {
@@ -161,6 +169,7 @@ public class Movement : MonoBehaviour
 
         Projectile.velocity = BulletPosition.transform.forward * ShotSpeed;
     }
+
     public void OpenInventory()
     {
         Inventory.SetActive(true);

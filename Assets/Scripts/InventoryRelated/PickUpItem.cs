@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PickUpItem : MonoBehaviour
 {
-    public Item Item;
+    /*/
+    public ItemProfile Item;
 
     //remove Item from map
     SpawnUI RemoveItem;
@@ -13,4 +14,5 @@ public class PickUpItem : MonoBehaviour
         InventoryManager.Instance.Add(Item);
         RemoveItem.DestroyItem();
     }
+    /*/
 }
