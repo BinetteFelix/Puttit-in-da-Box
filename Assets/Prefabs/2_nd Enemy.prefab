@@ -120,3 +120,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3704fa9ab7f2c51458472d72b2b57511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Banana: {fileID: 5622309328235675803, guid: a3282d8b752a8f3419eecd955c9fdf55, type: 3}

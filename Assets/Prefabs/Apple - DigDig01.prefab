@@ -22,7 +22,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9cc06550ce84a43459aee68f63aaa314, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9cc06550ce84a43459aee68f63aaa314, type: 3}
       propertyPath: m_LocalPosition.y
@@ -34,23 +34,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9cc06550ce84a43459aee68f63aaa314, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9cc06550ce84a43459aee68f63aaa314, type: 3}
-      propertyPath: m_LocalRotation.x
       value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9cc06550ce84a43459aee68f63aaa314, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9cc06550ce84a43459aee68f63aaa314, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9cc06550ce84a43459aee68f63aaa314, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9cc06550ce84a43459aee68f63aaa314, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 270
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9cc06550ce84a43459aee68f63aaa314, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -62,7 +62,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9cc06550ce84a43459aee68f63aaa314, type: 3}
       propertyPath: m_Name
-      value: "\xC4pple - DigDig01"
+      value: Apple - DigDig01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -82,7 +82,7 @@ PrefabInstance:
       addedObject: {fileID: -1938065709027835773}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9cc06550ce84a43459aee68f63aaa314, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -3109933733381327542}
+      addedObject: {fileID: 7718996065526499791}
   m_SourcePrefab: {fileID: 100100000, guid: 9cc06550ce84a43459aee68f63aaa314, type: 3}
 --- !u!1 &66644682384535530 stripped
 GameObject:
@@ -136,7 +136,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.009648195
-  m_Center: {x: -0.00010526418, y: 3.2878614e-18, z: 0.00030966682}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &-2533793335978049254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PressEPrefab: {fileID: 1862578456657970372, guid: 773c6ff4e1df4c147ae4ec11765897e3, type: 3}
---- !u!114 &-3109933733381327542
+--- !u!114 &7718996065526499791
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 66644682384535530}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2633443bf3f45af4f88d8ff1c2b5e7c6, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f4a58753da3f3d419f84f95101ed9d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Item: {fileID: 11400000, guid: 7339b9128b86efe48931c6e84fad12c1, type: 2}

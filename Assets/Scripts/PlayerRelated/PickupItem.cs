@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.Progress;
 
-public class CollisionWithApple : MonoBehaviour
+public class PickupItem: MonoBehaviour
 {
-    [SerializeField]
-    GameObject ItemObject;
-
-    public ItemProfile Item;
+    PickUp pickup;
 
     bool IsActive = false;
 
@@ -24,8 +21,8 @@ public class CollisionWithApple : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 PickupUI.DestroyUI();
-                PickUp();
                 IsActive = false;
+                pickup.PickUpItem();
             }
         }
     }
@@ -51,11 +48,4 @@ public class CollisionWithApple : MonoBehaviour
         }
         IsActive = false;
     }
-
-    void PickUp()
-    {
-        InventoryManager.Instance.Add(Item);
-        PickupUI.DestroyItem();
-    }
-
 }
