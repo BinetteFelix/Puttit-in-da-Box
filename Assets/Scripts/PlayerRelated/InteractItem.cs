@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.Progress;
 
-public class PickupItem: MonoBehaviour
+public class InteractItem: MonoBehaviour
 {
     PickUp pickup;
 
@@ -30,6 +30,7 @@ public class PickupItem: MonoBehaviour
     {
         Player = other.gameObject;
         PickupUI = Player.GetComponent<SpawnUI>();
+        pickup = Player.GetComponent<PickUp>();
 
         if (PickupUI != null)
         {

@@ -37,9 +37,4 @@ public class SpawnUI : MonoBehaviour
         IsActive = false;
         Destroy(UIUse);
     }
-
-    public void DestroyItem()
-    {
-        Destroy(gameObject);
-    }
 }

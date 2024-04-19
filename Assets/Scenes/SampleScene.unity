@@ -301,6 +301,7 @@ MonoBehaviour:
   Inventory: {fileID: 38019252}
   BulletPosition: {fileID: 1340539150}
   BulletPrefab: {fileID: 7866492774591112472, guid: 17c87ce682fce2d42b8e63151db6affd, type: 3}
+  Item: {fileID: 0}
   InventoryUI: 0
 --- !u!54 &61282212
 Rigidbody:
