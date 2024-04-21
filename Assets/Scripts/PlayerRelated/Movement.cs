@@ -16,8 +16,6 @@ public class Movement : MonoBehaviour
     Rigidbody PlayerRigidbody;
     public Rigidbody BulletPrefab;
 
-    public ItemProfile Item;
-
     Vector3 Deltamove;
     bool SprintToggle = false;
     bool JumpCooldownActive = false;

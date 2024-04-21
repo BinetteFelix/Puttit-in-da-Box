@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.UIElements.UxmlAttributeDescription;
 
-public class SpawnUI : MonoBehaviour
+public class UIForRespawn : MonoBehaviour
 {
     //if the UI is active or not
     bool IsActive = false;
@@ -26,13 +26,13 @@ public class SpawnUI : MonoBehaviour
         }
     }
 
-    public void PressEtoPickUp()
+    public void PressEForRespawn()
     {
         IsActive = true;
         UIUse = Instantiate(PressEPrefab, FindObjectOfType<Canvas>().transform).GetComponent<Image>();
     }
 
-    public void DestroyUI()
+    public void WalkedAwayFromWall()
     {
         IsActive = false;
         Destroy(UIUse);
