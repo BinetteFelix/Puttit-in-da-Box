@@ -8,10 +8,11 @@ public class HealthPointsEnemy1 : MonoBehaviour
     GameObject Apple;
 
     int HP = 5;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
     // Update is called once per frame
     void Update()
@@ -26,5 +27,11 @@ public class HealthPointsEnemy1 : MonoBehaviour
             Destroy(gameObject);
             Instantiate(Apple, gameObject.transform.position, Quaternion.identity);
         }
+    }
+
+    public void RespawnEnemy()
+    {
+        Destroy(gameObject);
+        HP = 5;
     }
 }

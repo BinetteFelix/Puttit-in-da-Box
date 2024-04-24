@@ -26,7 +26,7 @@ public class UIForItem : MonoBehaviour
         }
     }
 
-    public void PressEtoPickUp()
+    public void ShowUI()
     {
         IsActive = true;
         UIUse = Instantiate(PressEPrefab, FindObjectOfType<Canvas>().transform).GetComponent<Image>();

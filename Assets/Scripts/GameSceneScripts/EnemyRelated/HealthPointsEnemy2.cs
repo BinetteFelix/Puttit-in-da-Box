@@ -8,6 +8,7 @@ public class HealthPointsEnemy2 : MonoBehaviour
     GameObject Banana;
 
     int HP = 5;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,5 +28,10 @@ public class HealthPointsEnemy2 : MonoBehaviour
             Destroy(gameObject);
             Instantiate(Banana, gameObject.transform.position, Quaternion.identity);
         }
+    }
+    public void RespawnEnemy()
+    {
+        Destroy(gameObject);
+        HP = 5;
     }
 }

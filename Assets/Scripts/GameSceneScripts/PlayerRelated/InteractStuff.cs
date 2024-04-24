@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEditor.Progress;
 
-public class InteractItem: MonoBehaviour
+public class InteractStuff: MonoBehaviour
 {
     bool IsActive = false;
     bool ItemTouch = false;
@@ -14,7 +14,7 @@ public class InteractItem: MonoBehaviour
 
     UIForRespawn IsRespawn;
     UIForItem IsItem;
-    EnemySpawner SpawnEnemies;
+    
     PickUp pickup;
 
     // Start is called before the first frame update
@@ -26,11 +26,12 @@ public class InteractItem: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if(IsActive == true)
         {
+            
             if (Input.GetKeyDown(KeyCode.E))
             {
-                
                 IsActive = false;
                 if (ItemTouch == true)
                 {
@@ -40,9 +41,8 @@ public class InteractItem: MonoBehaviour
                 }
                 else if (RespawnTouch == true)
                 {
-                    SpawnEnemies.SpawnEnemy1();
-                    SpawnEnemies.SpawnEnemy2();
-                    IsRespawn.WalkedAwayFromWall();
+                    IsRespawn.Respawn();
+                    IsRespawn.DestroyUI();
                     RespawnTouch = false;
                 }
             }
@@ -52,23 +52,21 @@ public class InteractItem: MonoBehaviour
     {
         Player = other.gameObject;
         IsItem = Player.GetComponent<UIForItem>();
-        IsRespawn = Player.GetComponent<UIForRespawn>();
         pickup = Player.GetComponent<PickUp>();
-        SpawnEnemies = Player.GetComponent<EnemySpawner>();
+        IsRespawn = Player.GetComponent<UIForRespawn>();
+        
 
         if (IsItem != null)
         {
-            IsItem.PressEtoPickUp();
+            IsItem.ShowUI();
             ItemTouch = true;
         }
         else if (IsRespawn != null)
         {
-            IsRespawn.PressEForRespawn();
+            IsRespawn.ShowUI();
             RespawnTouch = true;
         }
-
         IsActive = true;
-
     }
     private void OnTriggerExit(Collider other)
     {
@@ -83,7 +81,7 @@ public class InteractItem: MonoBehaviour
         }
         else if (IsRespawn != null)
         {
-            IsRespawn.WalkedAwayFromWall();
+            IsRespawn.DestroyUI();
             RespawnTouch = false;
         }
         IsActive = false;
