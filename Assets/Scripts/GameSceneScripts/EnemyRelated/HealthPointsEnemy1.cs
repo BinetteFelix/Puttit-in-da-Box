@@ -9,6 +9,7 @@ public class HealthPointsEnemy1 : MonoBehaviour
 
     int HP = 5;
 
+    Vector3 SpawnOffset = new Vector3(0, 15, 0);
     // Start is called before the first frame update
     void Start()
     {
@@ -25,13 +26,7 @@ public class HealthPointsEnemy1 : MonoBehaviour
         if (HP == 0)
         {
             Destroy(gameObject);
-            Instantiate(Apple, gameObject.transform.position, Quaternion.identity);
+            Instantiate(Apple, gameObject.transform.position + SpawnOffset, Quaternion.identity);
         }
-    }
-
-    public void RespawnEnemy()
-    {
-        Destroy(gameObject);
-        HP = 5;
     }
 }

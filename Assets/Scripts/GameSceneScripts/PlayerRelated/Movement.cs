@@ -7,11 +7,9 @@ using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField]
-    GameObject Inventory;
-
-    [SerializeField]
-    GameObject BulletPosition;
+    [SerializeField] GameObject Inventory;
+    [SerializeField] GameObject BulletPosition;
+    [SerializeField] GameObject PauseCanvas;
 
     Rigidbody PlayerRigidbody;
     public Rigidbody BulletPrefab;
@@ -20,7 +18,6 @@ public class Movement : MonoBehaviour
     bool SprintToggle = false;
     bool JumpCooldownActive = false;
     public bool InventoryUI = false;
-
 
     int Speed = 25;
     float ShotSpeed = 250;
@@ -39,9 +36,13 @@ public class Movement : MonoBehaviour
         //Move Direction
         Deltamove = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")) * Speed * Time.deltaTime;
         transform.Translate(Deltamove);
-        
-            
 
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseGame();
+        }
+         
         //No Sprint Movement
         if (SprintToggle == false)
         {
@@ -85,8 +86,6 @@ public class Movement : MonoBehaviour
 
         if (InventoryUI == false)
         {
-            
-
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 ShootBullet();
@@ -151,13 +150,13 @@ public class Movement : MonoBehaviour
     //Jumping Script
     void Jump()
     {
-        PlayerRigidbody.AddForce(new Vector3(0, 100, 0), ForceMode.Impulse);
+        PlayerRigidbody.AddForce(new Vector3(0, 200, 0), ForceMode.Impulse);
         JumpCooldownActive = true;
     }
     //Gravity (Kinda obvious but anyway)
     void Gravity()
     {
-        PlayerRigidbody.AddForce(new Vector3(0, -150, 0));
+        PlayerRigidbody.AddForce(new Vector3(0, -350, 0));
 
     }
 
@@ -178,5 +177,10 @@ public class Movement : MonoBehaviour
     {
         Inventory.SetActive(false);
         InventoryUI = false;
+    }
+    public void PauseGame()
+    {
+        PauseCanvas.SetActive(true);
+        Time.timeScale = 0;
     }
 }

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class InteractStuff: MonoBehaviour
 {
@@ -12,8 +11,8 @@ public class InteractStuff: MonoBehaviour
 
     GameObject Player;
 
-    UIForRespawn IsRespawn;
-    UIForItem IsItem;
+    UIForRespawn RespawnObject;
+    UIForItem ItemObject;
     
     PickUp pickup;
 
@@ -36,13 +35,13 @@ public class InteractStuff: MonoBehaviour
                 if (ItemTouch == true)
                 {
                     pickup.PickUpItem();
-                    IsItem.DestroyUI();
+                    ItemObject.DestroyUI();
                     ItemTouch = false;
                 }
                 else if (RespawnTouch == true)
                 {
-                    IsRespawn.Respawn();
-                    IsRespawn.DestroyUI();
+                    RespawnObject.Respawn();
+                    RespawnObject.DestroyUI();
                     RespawnTouch = false;
                 }
             }
@@ -51,19 +50,19 @@ public class InteractStuff: MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Player = other.gameObject;
-        IsItem = Player.GetComponent<UIForItem>();
+        ItemObject = Player.GetComponent<UIForItem>();
         pickup = Player.GetComponent<PickUp>();
-        IsRespawn = Player.GetComponent<UIForRespawn>();
+        RespawnObject = Player.GetComponent<UIForRespawn>();
         
 
-        if (IsItem != null)
+        if (ItemObject != null)
         {
-            IsItem.ShowUI();
+            ItemObject.ShowUI();
             ItemTouch = true;
         }
-        else if (IsRespawn != null)
+        else if (RespawnObject != null)
         {
-            IsRespawn.ShowUI();
+            RespawnObject.ShowUI();
             RespawnTouch = true;
         }
         IsActive = true;
@@ -71,17 +70,17 @@ public class InteractStuff: MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         Player = other.gameObject;
-        IsItem = Player.GetComponent<UIForItem>();
-        IsRespawn = Player.GetComponent<UIForRespawn>();
+        ItemObject = Player.GetComponent<UIForItem>();
+        RespawnObject = Player.GetComponent<UIForRespawn>();
 
-        if (IsItem != null)
+        if (ItemObject != null)
         {
-            IsItem.DestroyUI();
+            ItemObject.DestroyUI();
             ItemTouch = false;
         }
-        else if (IsRespawn != null)
+        else if (RespawnObject != null)
         {
-            IsRespawn.DestroyUI();
+            RespawnObject.DestroyUI();
             RespawnTouch = false;
         }
         IsActive = false;

@@ -28,7 +28,7 @@ public class CameraMovement : MonoBehaviour
     {
         //Follow Player
         Vector3 TargetPosition = Player.transform.position + new Vector3(0, 0, -1);
-        transform.position = Vector3.SmoothDamp(transform.position, TargetPosition, ref velocity, 0.1f);
+        transform.position = Vector3.SmoothDamp(transform.position, TargetPosition, ref velocity, 0.075f);
 
         if (InventoryUI == true)
         {
