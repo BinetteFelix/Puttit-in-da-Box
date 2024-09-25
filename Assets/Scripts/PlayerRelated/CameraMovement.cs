@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
     [SerializeField]
     GameObject Inventory;
+    [SerializeField]
+    GameObject AimSightPos;
 
     public GameObject Player;
 
@@ -17,13 +20,46 @@ public class CameraMovement : MonoBehaviour
 
     float Sensitivity = 10;
 
+    float transitionDuration = 2.5f;
+    float t = 0.0f;
+
+    public void resetCam()
+    {
+        StartCoroutine(LerpToPosition(5, AimSightPos.transform.position, true));
+    }
+
+    IEnumerator LerpToPosition(float lerpSpeed, Vector3 newPosition, bool useRelativeSpeed = false)
+    {
+        if (useRelativeSpeed)
+        {
+            float totalDistance = AimSightPos.transform.position.x - AimSightPos.transform.position.x;
+            float diff = transform.position.x - AimSightPos.transform.position.x;
+            float multiplier = diff / totalDistance;
+            lerpSpeed *= multiplier;
+        }
+
+        float t = 0.0f;
+        Vector3 startingPos = transform.position;
+        while (t < 1.0f)
+        {
+            t += Time.deltaTime * (Time.timeScale / lerpSpeed);
+
+            transform.position = Vector3.Lerp(startingPos, newPosition, t);
+            yield return 0;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
         
     }
-
+   
     // Update is called once per frame
+    void Update()
+    {
+        
+        
+    }
     void FixedUpdate()
     {
         //Follow Player
