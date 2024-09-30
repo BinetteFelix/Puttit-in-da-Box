@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using UnityEditorInternal;
 using UnityEngine;
 
 public class CameraMovement : MonoBehaviour

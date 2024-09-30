@@ -68,6 +68,7 @@ public class UIForRespawn : MonoBehaviour
     {
         IsActive = false;
         Destroy(UIUse);
+        Destroy(TextUse);
     }
     public void Respawn()
     {
