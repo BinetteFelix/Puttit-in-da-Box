@@ -86,7 +86,7 @@ public class Movement : MonoBehaviour
 
         if (InventoryUI == false)
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetMouseButtonDown(0))
             {
                 ShootBullet();
             }
