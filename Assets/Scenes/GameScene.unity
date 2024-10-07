@@ -1074,7 +1074,7 @@ Transform:
   m_GameObject: {fileID: 395377864}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 6.7, y: -4.08, z: 7.07}
+  m_LocalPosition: {x: 6.7, y: -4, z: 7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2542,7 +2542,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 22.5, z: 50}
+  m_LocalPosition: {x: 0, y: 15, z: 50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2578,12 +2578,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90d90ca5fa851a64aacf8718da675e5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   Weapon: {fileID: 395377864}
   ADSPosition: {fileID: 1504151433}
   DefaultPos: {fileID: 382119527}

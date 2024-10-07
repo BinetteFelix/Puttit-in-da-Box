@@ -15,7 +15,7 @@ public class CameraMovement : MonoBehaviour
     public Vector3 CameraLookaround;
     Vector3 velocity;
 
-    float Sensitivity = 10;
+    float Sensitivity = 7.5f;
 
     // Start is called before the first frame update
     void Start()
