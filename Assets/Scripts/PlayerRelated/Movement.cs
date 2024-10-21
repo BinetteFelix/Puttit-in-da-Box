@@ -7,13 +7,17 @@ using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 public class Movement : MonoBehaviour
 {
+    public GameObject Weapon;
     [SerializeField] GameObject Inventory;
     [SerializeField] GameObject BulletPosition;
     [SerializeField] GameObject PauseCanvas;
 
     Rigidbody PlayerRigidbody;
     public Rigidbody BulletPrefab;
-
+    public Transform OriginalPos;
+    public Transform LeftPos;
+    public Transform RightPos;
+   
     Vector3 Deltamove;
     bool SprintToggle = false;
     bool JumpCooldownActive = false;

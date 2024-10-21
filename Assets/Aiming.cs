@@ -21,12 +21,14 @@ public class Aiming : MonoBehaviour
     {
         if (Input.GetMouseButton(1))
         {
-            Weapon.transform.position = Vector3.Lerp(Weapon.transform.position, ADSPosition.transform.position, AnimationSpeed * Time.deltaTime);
+            Weapon.transform.position = Vector3.Slerp(Weapon.transform.position, ADSPosition.transform.position, AnimationSpeed * Time.deltaTime);
         }
         else
         {
-            Weapon.transform.position = Vector3.Lerp(Weapon.transform.position, DefaultPos.transform.position, AnimationSpeed * Time.deltaTime);
+            Weapon.transform.position = Vector3.Slerp(Weapon.transform.position, DefaultPos.transform.position, AnimationSpeed * Time.deltaTime);
         }
+
+        
 
     }
 }
